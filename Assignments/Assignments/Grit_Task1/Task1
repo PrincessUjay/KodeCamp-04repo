@@ -1,0 +1,50 @@
+https://docs.google.com/document/d/1-RITBeAV99XMr69hAbx_is18ktC7ogVc62mXlJnuesE/edit?usp=sharing
+MY GRIT PROFILE 
+My Goal for KodeCamp 4.0: My goal for KodeCamp 4.0 is to build a strong foundation in DevOps principles and practices, equipping myself with the skills needed to be job-ready. I want to get hands-on experience with key DevOps tools and methodologies, such as continuous integration and continuous deployment (CI/CD), containerization with Docker, and infrastructure management using Terraform and Ansible. Additionally, I aim to cover essential areas like operating systems, programming, networking, version control with Git, cloud computing, container orchestration, infrastructure as code, and monitoring and observability. By the end of the bootcamp, I hope to confidently implement a full CI/CD pipeline, manage cloud infrastructure efficiently, and contribute to innovative projects in the IT industry. I also aspire to build a comprehensive portfolio of work to showcase what I have learned and demonstrate my capabilities to potential employers.
+Why Achieving This Goal is Important to Me: Achieving this goal is incredibly important to me because DevOps is an essential skill set in today’s rapidly evolving technology landscape. Mastering DevOps will not only open up numerous career opportunities for me but also enable me to make a meaningful impact in the IT industry. I have always been passionate about leveraging technology to solve complex problems and improve operational efficiencies. This bootcamp represents a unique opportunity to deepen my technical skills and knowledge, which I believe is crucial for my professional growth. By gaining expertise in DevOps, I will be better equipped to contribute to innovative projects, collaborate with talented professionals, and drive significant improvements within organizations. This aligns perfectly with my long-term career aspirations of becoming a proficient DevOps engineer and playing a key role in advancing technological solutions. Additionally, the hands-on experience and mentorship provided during this bootcamp will be invaluable in helping me achieve my goals and build a solid foundation for a successful career in the IT industry.
+Obstacles I Might Face and How I Plan to Overcome Them: As I embark on this bootcamp, I anticipate facing a few challenges, but I am prepared to overcome them. One of the biggest hurdles might be the technical challenges, given my beginner status. I plan to tackle this by dedicating extra time to study and practice, making good use of online tutorials i.e. YouTube and forums, and seeking help from instructors and peers whenever needed. Time management could also be tricky, as balancing the bootcamp with other commitments might get overwhelming. To handle this, I will create a detailed schedule to allocate specific times for my bootcamp activities, ensuring I stay on track and avoid procrastination. Lastly, staying motivated throughout this intensive program could be tough. To keep my spirits high, I will set small, achievable milestones to celebrate progress, maintain a journal to track my journey, and constantly remind myself of the long-term benefits of mastering these skills.
+Support Systems in Place: I am fortunate to have a strong support system that includes my family and friends who are incredibly supportive of my learning journey, always providing moral support and encouragement. The instructors and mentors at KodeCamp are invaluable, offering guidance and feedback that help me stay on track and grow. Additionally, engaging with my peers, especially my accountability partner, in the bootcamp fosters a collaborative environment where we support each other, share knowledge, and build a sense of community that makes the learning experience even more enriching.
+
+MY ACTION PLAN
+Month 1
+Operating Systems: Gain a solid understanding of basic Operating system concepts and Linux, the most commonly used Operating system in the DevOps landscape.
+Programming: Learn the basics of a programming language commonly used in DevOps, such as Python or Golang.
+Networking: Understand fundamental networking concepts and protocols.
+Version Control Systems (VCS): Get proficient with Git for version control.
+Action Steps I will take:
+Complete Linux tutorials and practice common commands.
+Learn Python/Golang basics through online courses, as well as YouTube tutorials and the bootcamp classes.
+Study networking concepts, including but not limited to TCP/IP, DNS, and HTTP/HTTPS.
+Set up my GitHub account properly and practice version control using Git, as well as other live-in-terminal concepts.
+Month 2
+Containerization: Learn how to use Docker for containerization.
+Cloud Computing: Get acquainted with cloud services and providers like AWS, Azure, or Google Cloud.
+CI/CD: Understand the principles of Continuous Integration and Continuous Deployment.
+Action Steps I will take:
+Complete Docker tutorials and create simple containerized applications.
+Study cloud computing fundamentals and get hands-on with a cloud provider such as GCP, AWS, or Azure.
+Implement a basic CI/CD pipeline using tools like Jenkins or GitHub Actions.
+Start documenting projects and contributions in a portfolio format on GitHub, and utilize github pages.
+Month 3
+Container Orchestration: Learn about Kubernetes and how to orchestrate containers.
+Infrastructure as Code (IaC): Get familiar with tools like Terraform and Ansible.
+Monitoring and Observability: Understand the importance of monitoring and how to implement it using tools like Prometheus and Grafana.
+Action Steps I will take:
+Complete Kubernetes tutorials and deploy applications using Kubernetes.
+Study Terraform and Ansible, and practice creating and managing infrastructure using code.
+Implement monitoring and logging for applications using Prometheus and Grafana.
+Continue building and refining my GitHub portfolio with more advanced projects.
+Month 4: 
+Capstone Project: Apply all the skills learned to a comprehensive, end-to-end DevOps project whether collaborative or not.
+Portfolio and GitHub: Finalize and showcase my DevOps portfolio via github pages and on GitHub, and include my projects to my LinkedIn profile while optimizing it for the job title/role ‘DevOps Engineer’.
+Prepare my Resume.
+Action Steps I will take:
+Plan and execute a capstone project that includes setting up a full CI/CD pipeline, containerization, cloud deployment, infrastructure as code, and monitoring.
+Document the project thoroughly, including challenges faced and solutions implemented.
+Review and polish all projects on my GitHub portfolio, ensuring they are well-documented and demonstrate my skills effectively.
+Prepare my resume in an ATS friendly format.
+Seek feedback from mentors and peers to further refine my portfolio and resume.
+By following this action plan and leveraging my support systems, I am confident in achieving my goal for KodeCamp 4.0 and building a strong foundation in DevOps. Some action steps may occur before others without following the order depending on the circumstances or situations that may arise but I’ll surely make iterations to my action plan to suit the changing situations. With my robust support network, I am prepared to tackle any obstacles and make the most of this bootcamp.
+
+FEEDBACK GOTTEN
+This is an extreme elaboration. The plan is easy to follow.
