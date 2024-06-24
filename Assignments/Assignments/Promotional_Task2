@@ -1,0 +1,109 @@
+Step 1: Leave Virtual Box open then Open terminal, spin up vagrant and SSH into Vagrant using the commands :
+vagrant up
+vagrant ssh
+
+Step 2: Run the following commands to get to the root directory 
+cd ..
+cd ..
+ls 
+N/B : This will list the available directories 
+
+Step 3: Make a directory called KodeCamp Stores using this command: sudo mkdir KodeCamp_Stores
+
+Step 4: change directory to KodeCamp Stores using the command: cd KodeCamp_Stores
+
+Step 5: Within the KodeCamp Stores Directory create the following company documents. 
+Finance Budgets
+Contract Documents
+Business Projections
+Business Models
+Employee Data
+Company Vision and Mission Statement
+Server Configuration Script
+To create Company Documents (Directories) run the command:
+sudo mkdir -p Finance_Budgets Contract_Documents Business_Projections Business_Models Employee_Data Company_Vision_and_Mission_Statement Server_Configuration_Script 
+N/B: this command will create all the company directories at the same time.
+
+Then list them to confirm they have been created using the command: ls
+
+Step 6: create the following groups
+IT Team
+Legal Team
+Sales Team
+HR
+Business Team
+Finance
+To create Groups, run the following commands:
+sudo groupadd IT_Team
+sudo groupadd Legal_Team
+sudo groupadd HR
+sudo groupadd Sales_Team
+sudo groupadd Business_Team
+sudo groupadd Finance
+Next verify if the groups have been created by looking into the /etc/group file. Run the following commands to do that: 
+cd ..
+cd etc
+nano group
+N/b: Scroll and check for the groups created. Then press ctrl O then the enter key and then ctrl X to Exit. Once you exit run the following commands to go back to the KodeCamp_Stores directory
+cd ..
+cd KodeCamp_Stores
+
+Step 7: create the following users
+Andrew, System Administrator
+Julius, Legal
+Chizi, Human Resource Manager
+Jeniffer, Sales Manager
+Adeola, Business Strategist
+Bach, CEO
+Gozie, IT intern
+Ogochukwu, Finance Manager 
+To create Users run the following commands:
+sudo useradd -—create-home Andrew
+sudo useradd -—create-home Julius
+sudo useradd -—create-home Chizi
+sudo useradd -—create-home Jeniffer
+sudo useradd -—create-home Adeola
+sudo useradd -—create-home Bach
+sudo useradd -—create-home Gozie
+sudo useradd -—create-home Ogochukwu
+
+Step 8: Assign the Users to groups. 
+To assign the Users to groups run the following commands
+sudo gpasswd -a Andrew IT_Team
+sudo gpasswd -a Julius Legal_Team
+sudo gpasswd -a Chizi HR
+sudo gpasswd -a Jeniffer Sales_Team
+sudo gpasswd -a Adeola Business_Team
+sudo gpasswd -a Bach Business_Team
+sudo gpasswd -a Gozie IT_Team
+sudo gpasswd -a Ogochukwu Finance
+ 
+Step 9: Assign right access to the right groups. To do this,  run the following commands:
+sudo chown :Finance /KodeCamp_Stores/Finance_Budgets
+sudo chown :Legal_Team /KodeCamp_Stores/Contract_Documents
+sudo chown :Business_Team /KodeCamp_Stores/Business_Projections
+sudo chown :Sales_Team /KodeCamp_Stores/Business_Models
+sudo chown :HR /KodeCamp_Stores/Employee_Data
+sudo chown :Business_Team /KodeCamp_Stores/Company_Vision_and_Mission_Statement
+sudo chown :IT_Team /KodeCamp_Stores/Server_Configuration_Script
+
+To give  permissions run the following commands: N/b these will give Read, Write, and Execute permissions to User and Group and no permissions to others. However, others will have the permission to read the company vision and mission statement
+sudo chmod 770 /KodeCamp_Stores/Finance_Budgets
+sudo chmod 770 /KodeCamp_Stores/Contract_Documents
+sudo chmod 770 /KodeCamp_Stores/Business_Projections
+sudo chmod 770 /KodeCamp_Stores/Business_Models
+sudo chmod 770 /KodeCamp_Stores/Employee_Data
+sudo chmod 774 /KodeCamp_Stores/Company_Vision_and_Mission_Statement
+sudo chmod 770 /KodeCamp_Stores/Server_Configuration_Script
+
+
+Step 10: Verify Permissions.
+To ensure that the permissions are set correctly, you can run this command in the KodeCamp_Stores Directory: ls -lr
+This will show you the permissions, and the groups that have access to each company directory.
+
+You can also login into any of the users created and try accessing the directories assigned to their team. E.g Run the following commands 
+
+sudo -su Andrew
+ls -lr 
+cd Server_Configuration_Script
+exit
