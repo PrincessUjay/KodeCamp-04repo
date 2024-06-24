@@ -112,7 +112,7 @@ def create_file():
     filename = input("Enter the name of the file: ")
     directoryname = input("Enter the directory to create the file in: ")
      
-    if directoryname in company_directories:
+    if directoryname in company_directories.keys():
         file_path = f"/{company_directory}/{directoryname}/{filename}"
         try:
             with open(file_path, "w") as file:
@@ -131,13 +131,13 @@ def main():
         create_group(group)
         create_user(username, group)
 
-    for directory_name, group in company_directories.items():
-        create_directory(directory_name)
+    for directoryname, group in company_directories.items():
+        create_directory(directoryname)
 
         user = [username for username,
                     usr_group in users.items() if usr_group == group]
         if user:
-            set_permissions(directory_name, user[0], group)
+            set_permissions(directoryname, user[0], group)
 
     create_file()
 
