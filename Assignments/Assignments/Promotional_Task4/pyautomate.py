@@ -131,7 +131,7 @@ def main():
         create_group(group)
         create_user(username, group)
 
-    for directoryname, group in company_directories.keys():
+    for directoryname, group in company_directories.items():
         create_directory(directoryname)
 
         user = [username for username,
