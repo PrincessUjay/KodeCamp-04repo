@@ -72,24 +72,50 @@ c. To Create and attach an IGW to KCVPC, fill in the details:
 ![Screenshot (50)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/5d9e9b5b-486e-4111-98e8-3b61b5f752db)
 
 ### Step 4: Configure Route Tables
-a. Navigate to the Route Tbles section in the left-hand Menu
+a. Navigate to the Route Tables section in the left-hand Menu
 
 b. Click on "Create Route Table" and fill in the details:
 
 Public Route Table:
-- Name Tag: PublicRouteTable
-- Associate PublicSubnet with this route table.
-- Add a route to the IGW (0.0.0.0/0 -> IGW).
+- Name: PublicRouteTable
+- VPC: Select the 'KCVPC' VPC you created.
+- Click "Create Route Table".
+- To Add a route to the IGW (0.0.0.0/0 -> IGW), and Associate PublicSubnet with this route table:
+  - Select the created route table, click on the "Routes" Tab, and then "Edit Routes".
+  - Click on "Add route"
+  - Set Destination to 0.0.0.0/0 and Target to the Internet Gateway 'KCVPC-IGW'.
+  - Click "Save Changes"
+  - Go to the "subnet associations" tab and click on "Edit subnet associations".
+  - Select "PublicSubnet" and Click "Save associations".
+ 
+![Screenshot (51)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/efebb9fa-91d8-4fac-b7f0-674bc92f6848)
 
 Private Route Table:
-- Name Tag: PrivateRouteTable
-- Associate PrivateSubnet with this route table.
-- Ensure no direct route to the internet.
+- Click on "Create route table" again.
+- Name: PrivateRouteTable
+- VPC: Select the 'KCVPC' VPC you created.
+- Click "Create Route Table".
+- To Associate PrivateSubnet with this route table:
+  - Go to the "subnet associations" tab and click on "Edit subnet associations".
+  - Select "PrivateSubnet" and Click "Save associations"
+N/B: Ensure no direct route to the internet.
+
+![Screenshot (52)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/895d31a8-b11b-43be-a27c-6c8a0c71a4de)
 
 ### Step 5: Configure NAT Gateway
-- Create a NAT Gateway in the PublicSubnet.
-- Allocate an Elastic IP for the NAT Gateway.
-- Update the PrivateRouteTable to route internet traffic (0.0.0.0/0) to the NAT Gateway.
+- Navigate to the NAT Gateways section in the left-hand menu.
+- Click on "Create NAT gateway" and Fill in the details:
+  - Subnet: Select PublicSubnet
+  - Elastic IP Allocation ID: Click on "Allocate Elastic IP" and select it.
+- Click "Create NAT gateway".
+- To Update the Private Route Table:
+  - Navigate to the Route Tables section in the left-hand Menu
+  - Select the PrivateRouteTable.
+  - Go to the "Routes" tab and click "Edit routes".
+  - Click on "Add route", set Destination to 0.0.0.0/0, and Target to the created NAT Gateway.
+  - Click "Save Changes".
+
+![Screenshot (53)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/6797656f-7a55-40d8-9fe9-0af68ef9e4b4)
 
 ### Step 6: Set Up Security Groups
 Public Security Group:
