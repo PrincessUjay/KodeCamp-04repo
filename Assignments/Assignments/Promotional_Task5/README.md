@@ -55,7 +55,7 @@ Private Subnet
 
 c. Click "Create Subnet".
 
-
+![Screenshot (49)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/aa864eea-7150-4e7a-baf0-3f813733796e)
 
 ### Step 3: Configure Internet Gateway
 a. Navigate to the Internet Gateways section in the left-hand menu.
@@ -69,7 +69,7 @@ c. To Create and attach an IGW to KCVPC, fill in the details:
 - Click on "Actions" and select "Attach to VPC".
 - Select 'KCVPC' and click "Attach".
 
-
+![Screenshot (50)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/5d9e9b5b-486e-4111-98e8-3b61b5f752db)
 
 ### Step 4: Configure Route Tables
 a. Navigate to the Route Tbles section in the left-hand Menu
