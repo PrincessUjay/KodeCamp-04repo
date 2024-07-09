@@ -32,6 +32,8 @@ d. Leave the default settings for other fields
 
 e. Click "Create VPC".
 
+![Screenshot (48)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/d10344fe-38e0-4dc8-9162-ac0f7cf0ecfb)
+
 ### Step 2: Create Subnets
 a. Navigate to the Subnets section in the left-hand menu.
 
