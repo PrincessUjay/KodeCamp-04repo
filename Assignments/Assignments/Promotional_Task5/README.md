@@ -20,35 +20,63 @@ Design and set up a Virtual Private Cloud (VPC) with both public and private sub
 This README.md File details the steps to create and configure a Virtual Private Cloud (VPC) named KCVPC with public and private subnets, and appropriate routing and security configurations.
 
 ### Step 1: Create VPC
-a. Navigate to VPC Dashboard in the AWS Management Console.
+a. Open your AWS Console (console.aws.amazon.com) and Navigate to VPC Dashboard in the AWS Management Console.
 
-b. Create a VPC with the following details:
-- Name: KCVPC
+b. Click on "Your VPCs" in the left-hand menu.
+
+c. Click on "Create VPC" and Create a VPC with the following details:
+- Name Tag: KCVPC
 - IPv4 CIDR block: 10.0.0.0/16
 
+d. Leave the default settings for other fields
+
+e. Click "Create VPC".
+
 ### Step 2: Create Subnets
+a. Navigate to the Subnets section in the left-hand menu.
+
+b. Click on "Create Subnet" and create these subnets with the following details:
+
 Public Subnet
-- Name: PublicSubnet
+- VPC: Select the 'KCVPC' VPC you created.
+- Subnet Name: PublicSubnet
 - IPv4 CIDR block: 10.0.1.0/24
-- Availability Zone: Select one (e.g., eu-west-1a)
+- Availability Zone: Select one (e.g., I selected eu-west-1a)
+
+Click add new subnet and create a private subnet
 
 Private Subnet
-- Name: PrivateSubnet
+- VPC: Select the 'KCVPC' VPC you created.
+- Subnet Name: PrivateSubnet
 - IPv4 CIDR block: 10.0.2.0/24
-- Availability Zone: Select the same as the Public Subnet for simplicity (e.g., eu-west-1a)
+- Availability Zone: Select one (e.g., I selected eu-west-1a)
+
+c. Click "Create Subnet".
 
 ### Step 3: Configure Internet Gateway
-a. Create and attach an IGW to KCVPC:
-- Name: KCVPC-IGW
+a. Navigate to the Internet Gateways section in the left-hand menu.
+
+b. Click on "Create Internet Gateway"
+
+c. To Create and attach an IGW to KCVPC, fill in the details:
+- Name Tag: KCVPC-IGW
+- Click "Create Internet Gateway"
+- Attach the internet gateway by selecting the created IGW.
+- Click on "Actions" and select "Attach to VPC".
+- Select 'KCVPC' and click "Attach".
 
 ### Step 4: Configure Route Tables
+a. Navigate to the Route Tbles section in the left-hand Menu
+
+b. Click on "Create Route Table" and fill in the details:
+
 Public Route Table:
-- Name: PublicRouteTable
+- Name Tag: PublicRouteTable
 - Associate PublicSubnet with this route table.
 - Add a route to the IGW (0.0.0.0/0 -> IGW).
 
 Private Route Table:
-- Name: PrivateRouteTable
+- Name Tag: PrivateRouteTable
 - Associate PrivateSubnet with this route table.
 - Ensure no direct route to the internet.
 
