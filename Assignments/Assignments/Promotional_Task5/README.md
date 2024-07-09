@@ -55,6 +55,8 @@ Private Subnet
 
 c. Click "Create Subnet".
 
+
+
 ### Step 3: Configure Internet Gateway
 a. Navigate to the Internet Gateways section in the left-hand menu.
 
@@ -66,6 +68,8 @@ c. To Create and attach an IGW to KCVPC, fill in the details:
 - Attach the internet gateway by selecting the created IGW.
 - Click on "Actions" and select "Attach to VPC".
 - Select 'KCVPC' and click "Attach".
+
+
 
 ### Step 4: Configure Route Tables
 a. Navigate to the Route Tbles section in the left-hand Menu
