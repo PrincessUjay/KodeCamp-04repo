@@ -139,7 +139,9 @@ Go to the "Inbound rules" tab and click "Edit inbound rules".
   - HTTPS (port 443) from 0.0.0.0/0
   - SSH (port 22) from your specific IP (check https://www.whatismyip.com/) i.e type in the IP as a custom one with CIDR notation (for mine: 32)
 - Click "Save rules".
-  
+
+![Screenshot (55)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/09c7e69f-1bf3-46e8-a895-c537ee0df158)
+
 d. To Edit Outbound Rules:
 - Go to the "Outbound rules" tab and click "Edit Outbound rules" 
 - Add a new rule:
@@ -148,6 +150,8 @@ d. To Edit Outbound Rules:
   - Port Range: All
   - Destination: 0.0.0.0/0 (This will Allow all outbound traffic to any IP address)
 - Click "Save rules".
+
+![Screenshot (56)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/b18527ca-3665-4150-8e47-1e7a6dbd88a9)
 
 For Private Security Group:
 
@@ -173,6 +177,8 @@ c. To Edit Outbound Rules:
   - Destination: 0.0.0.0/0 (This will Allow all outbound traffic to any IP address)
 - Click "Save rules".
 N/B: you can also allow it by default.
+
+![Screenshot (57)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/d6881364-ec31-4c13-aa32-d7acc3eb11b6)
 
 ### Step 7: Configure Network ACLs (NACLs)
 For Public Subnet NACL:
