@@ -193,20 +193,22 @@ b. Click on "Create network ACL" and Fill in the details:
 c. To Edit Inbound Rules:
 - Select the created NACL.
 - Go to the "Inbound rules" tab and click "Edit inbound rules".
-- Click "add new rule" and Add rules for:
-  - HTTP (port 80) from 0.0.0.0/0
-  - HTTPS (port 443) from 0.0.0.0/0
-  - SSH (port 22) from 0.0.0.0/0
+- Click "add new rule" and Add the following rules:
+  - Rule #: 1, Type: HTTP, Protocol: TCP, Port Range: 80, Source: 0.0.0.0/0, Allow/Deny: Allow
+  - Rule #: 2, Type: HTTPS, Protocol: TCP, Port Range: 443, Source: 0.0.0.0/0, Allow/Deny: Allow
+  - Rule #: 3, Type: SSH, Protocol: TCP, Port Range: 22, Source: <your IP>/32 (use your own public IP), Allow/Deny: Allow
   - Click "Save rules".
 
 d. To Edit Outbound Rules:
 - Go to the "Outbound rules" tab and click "Edit Outbound rules" 
-- Add a new rule:
+- Add a new rule 1:
   - Type: All traffic.
   - Protocol: All
   - Port Range: All
   - Destination: 0.0.0.0/0 (This will Allow all outbound traffic to any IP address)
 - Click "Save rules".
+
+![Screenshot (58)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/145cc1a1-0ed4-433b-8178-2125ad648e06)
 
 For Private Subnet NACL:
 a. Click on "Create network ACL" again and Fill in the details:
@@ -223,8 +225,41 @@ b. To Edit Inbound Rules:
   - Click "Save rules".
     
 c. To Edit Outbound Rules:
-- Allow outbound traffic to the public subnet (10.0.1.0/24).
-- Allow outbound traffic to the internet through the NAT Gateway.
+- Go to the "Outbound rules" tab and click "Edit Outbound rules" 
+- Add the following rules:
+  - Allow Outbound Traffic to the Public Subnet:
+    - Rule #: 1
+    - Type: All Traffic
+    - Protocol: All
+    - Port Range: All
+    - Destination: 10.0.1.0/24 (Public Subnet CIDR)
+    - Allow/Deny: Allow
+    - Purpose: This rule ensures that any traffic originating from the private subnet can communicate with resources in the public subnet.
+  - Allow Outbound Traffic to the Internet through the NAT Gateway:
+    - Rule #: 2
+    - Type: All Traffic
+    - Protocol: All
+    - Port Range: All
+    - Destination: 0.0.0.0/0
+    - Allow/Deny: Allow
+    - Purpose: This rule ensures that any traffic from the private subnet can access the internet via the NAT Gateway, allowing instances in the private subnet to reach external resources while remaining hidden from the internet.
+
+![Screenshot (59)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/8a61192e-7579-456a-b008-aee96888d818)
+
+d. Associating NACLs with Subnets:
+
+Associate Public Subnet NACL:
+- In the Network ACLs list, select PublicNACL.
+- Go to the "Subnet associations" tab.
+- Click "Edit subnet associations".
+- Select the PublicSubnet and click "Save changes".
+Associate Private Subnet NACL:
+- In the Network ACLs list, select PrivateNACL.
+- Go to the "Subnet associations" tab.
+- Click "Edit subnet associations".
+- Select the PrivateSubnet and click "Save changes".
+
+![Screenshot (60)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/e7b6afc5-075a-43d2-895d-fec8efdc2933)
 
 ### Step 8: Deploy Instances
 To Launch an EC2 Instance in the Public Subnet:
