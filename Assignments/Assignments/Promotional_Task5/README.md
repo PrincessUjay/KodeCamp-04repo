@@ -104,12 +104,14 @@ N/B: Ensure no direct route to the internet.
 ![Screenshot (52)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/895d31a8-b11b-43be-a27c-6c8a0c71a4de)
 
 ### Step 5: Configure NAT Gateway
-- Navigate to the NAT Gateways section in the left-hand menu.
-- Click on "Create NAT gateway" and Fill in the details:
+a. Navigate to the NAT Gateways section in the left-hand menu.
+
+b. Click on "Create NAT gateway" and Fill in the details:
   - Subnet: Select PublicSubnet
   - Elastic IP Allocation ID: Click on "Allocate Elastic IP" and select it.
 - Click "Create NAT gateway".
-- To Update the Private Route Table:
+  
+c. To Update the Private Route Table:
   - Navigate to the Route Tables section in the left-hand Menu
   - Select the PrivateRouteTable.
   - Go to the "Routes" tab and click "Edit routes".
@@ -119,130 +121,138 @@ N/B: Ensure no direct route to the internet.
 ![Screenshot (53)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/6797656f-7a55-40d8-9fe9-0af68ef9e4b4)
 
 ### Step 6: Set Up Security Groups
-Public Security Group:
+For Public Security Group:
 
-Navigate to the Security Groups section in the left-hand menu.
-Click on "Create security group".
-Fill in the details:
-Name tag: PublicSG
-VPC: Select KCVPC
-Description: Security group for public instances
-Click "Create security group".
-Edit Inbound Rules:
-Select the created security group.
+a. Navigate to the Security Groups section in the left-hand menu.
+
+b. Click on "Create security group" and Fill in the details:
+- Name tag: PublicSG
+- VPC: Select KCVPC
+- Description: Security group for public instances
+- Click "Create security group".
+  
+c. To Edit Inbound Rules:
+- Select the created security group.
 Go to the "Inbound rules" tab and click "Edit inbound rules".
-Add rules for:
-HTTP (port 80) from 0.0.0.0/0
-HTTPS (port 443) from 0.0.0.0/0
-SSH (port 22) from your specific IP (check https://www.whatismyip.com/)
-Click "Save rules".
-Edit Outbound Rules:
-Allow all outbound traffic by default.
+- Add rules for:
+  - HTTP (port 80) from 0.0.0.0/0
+  - HTTPS (port 443) from 0.0.0.0/0
+  - SSH (port 22) from your specific IP (check https://www.whatismyip.com/)
+- Click "Save rules".
+  
+d. To Edit Outbound Rules:
+- Allow all outbound traffic by default.
 
-Private Security Group:
+For Private Security Group:
 
-Click on "Create security group" again.
-Fill in the details:
-Name tag: PrivateSG
-VPC: Select KCVPC
-Description: Security group for private instances
-Click "Create security group".
-Edit Inbound Rules:
-Select the created security group.
-Go to the "Inbound rules" tab and click "Edit inbound rules".
-Add rules for:
-MySQL (port 3306) from PublicSubnet CIDR block (10.0.1.0/24)
-Click "Save rules".
-Edit Outbound Rules:
-Allow all outbound traffic by default.
+a. Click on "Create security group" again and Fill in the details:
+- Name tag: PrivateSG
+- VPC: Select KCVPC
+- Description: Security group for private instances
+- Click "Create security group".
 
-### Step 7: Configure Network ACLs
-Public Subnet NACL:
+b. To Edit Inbound Rules:
+- Select the created security group.
+- Go to the "Inbound rules" tab and click "Edit inbound rules".
+- Add rules for:
+  - MySQL (port 3306) from PublicSubnet    - CIDR block (10.0.1.0/24)
+  - Click "Save rules".
 
-Navigate to the Network ACLs section in the left-hand menu.
-Click on "Create network ACL".
-Fill in the details:
-Name tag: PublicNACL
-VPC: Select KCVPC
-Click "Create".
-Edit Inbound Rules:
-Select the created NACL.
-Go to the "Inbound rules" tab and click "Edit inbound rules".
-Add rules for:
-HTTP (port 80) from 0.0.0.0/0
-HTTPS (port 443) from 0.0.0.0/0
-SSH (port 22) from 0.0.0.0/0
-Click "Save rules".
-Edit Outbound Rules:
-Allow all outbound traffic by default.
-Private Subnet NACL:
-- Click on "Create network ACL" again.
-Fill in the details:
-Name tag: PrivateNACL
-VPC: Select KCVPC
-Click "Create".
-Edit Inbound Rules:
-Select the created NACL.
-Go to the "Inbound rules" tab and click "Edit inbound rules".
-Add rules for:
-Allow traffic from the public subnet (10.0.1.0/24) on necessary ports.
+c. To Edit Outbound Rules:
+- Allow all outbound traffic by default.
+
+### Step 7: Configure Network ACLs (NACLs)
+For Public Subnet NACL:
+
+a. Navigate to the Network ACLs section in the left-hand menu.
+
+b. Click on "Create network ACL" and Fill in the details:
+- Name tag: PublicNACL
+- VPC: Select KCVPC
+- Click "Create".
+
+c. To Edit Inbound Rules:
+- Select the created NACL.
+- Go to the "Inbound rules" tab and click "Edit inbound rules".
+- Add rules for:
+  - HTTP (port 80) from 0.0.0.0/0
+  - HTTPS (port 443) from 0.0.0.0/0
+  - SSH (port 22) from 0.0.0.0/0
+  - Click "Save rules".
+
+d. To Edit Outbound Rules:
+- Allow all outbound traffic by default.
+
+For Private Subnet NACL:
+a. Click on "Create network ACL" again and Fill in the details:
+- Name tag: PrivateNACL
+- VPC: Select KCVPC
+- Click "Create".
+
+b. To Edit Inbound Rules:
+- Select the created NACL.
+- Go to the "Inbound rules" tab and click "Edit inbound rules".
+- Add rules for:
+  - Allow traffic from the public subnet (10.0.1.0/24) on necessary ports.
 (e.g., MySQL port 3306)
-Click "Save rules".
-Edit Outbound Rules:
-Allow outbound traffic to the public subnet (10.0.1.0/24).
-Allow outbound traffic to the internet through the NAT Gateway.
+  - Click "Save rules".
+    
+c. To Edit Outbound Rules:
+- Allow outbound traffic to the public subnet (10.0.1.0/24).
+- Allow outbound traffic to the internet through the NAT Gateway.
 
 ### Step 8: Deploy Instances
-- Launch an EC2 Instance in the Public Subnet:
+To Launch an EC2 Instance in the Public Subnet:
 
-Navigate to the EC2 Dashboard.
-Click on "Launch instance".
-Fill in the details:
-Name: PublicInstance
-AMI: Choose an appropriate AMI (e.g., Amazon Linux 2)
-Instance type: Choose an appropriate type (e.g., t2.micro)
-Key pair: Select an existing key pair or create a new one.
-Network settings:
-VPC: Select KCVPC
-Subnet: Select PublicSubnet
-Auto-assign Public IP: Enable
-Security group: Select PublicSG
-Click "Launch instance" and complete the wizard.
-Verify that the instance can be accessed via SSH using the public IP.
+a. Navigate to the EC2 Dashboard.
 
-Launch an EC2 Instance in the Private Subnet:
+b. Click on "Launch instance" and Fill in the details:
+- Name: PublicInstance
+- AMI: Choose an appropriate AMI (e.g., Amazon Linux 2)
+- Instance type: Choose an appropriate type (e.g., t2.micro)
+- Key pair: Select an existing key pair or create a new one.
 
-Click on "Launch instance" again.
-Fill in the details:
-Name: PrivateInstance
-AMI: Choose an appropriate AMI (e.g., Amazon Linux 2)
-Instance type: Choose an appropriate type (e.g., t2.micro)
-Key pair: Select an existing key pair or create a new one.
-Network settings:
-VPC: Select KCVPC
-Subnet: Select PrivateSubnet
-Auto-assign Public IP: Disable
-Security group: Select PrivateSG
-Click "Launch instance" and complete the wizard.
-Verify that the instance can access the internet through the NAT Gateway by updating the instance and installing packages.
-Verify that the instance can communicate with the public instance.
+For Network settings:
+- VPC: Select KCVPC
+- Subnet: Select PublicSubnet
+- Auto-assign Public IP: Enable
+- Security group: Select PublicSG
+- Click "Launch instance" and complete the wizard.
+- Verify that the instance can be accessed via SSH using the public IP.
+
+To Launch an EC2 Instance in the Private Subnet:
+
+a. Click on "Launch instance" again and Fill in the details:
+- Name: PrivateInstance
+- AMI: Choose an appropriate AMI (e.g., Amazon Linux 2)
+- Instance type: Choose an appropriate type (e.g., t2.micro)
+- Key pair: Select an existing key pair or create a new one.
+
+For Network settings:
+- VPC: Select KCVPC
+- Subnet: Select PrivateSubnet
+- Auto-assign Public IP: Disable
+- Security group: Select PrivateSG
+- Click "Launch instance" and complete the wizard.
+- Verify that the instance can access the internet through the NAT Gateway by updating the instance and installing packages.
+- Verify that the instance can communicate with the public instance.
 
 ### Architecture Diagram
 https://excalidraw.com/#json=tXyVFfe7NzA7fEr1YRIBj,6sZlIHEA3khMk-QYMwCJYg
 ![Screenshot (54)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/ce43ef7e-2806-41cf-9bd3-d8f8ae636f76)
 
 ### Explanation of Components
-VPC (Virtual Private Cloud): A logically isolated section of the AWS cloud where you can launch AWS resources in a virtual network you define.
-Subnets:
-Public Subnet: A subnet with a route to the internet via the Internet Gateway (IGW).
-Private Subnet: A subnet without a direct route to the internet but can access it via the NAT Gateway.
-Internet Gateway (IGW): A horizontally scaled, redundant, and highly available VPC component that allows communication between instances in your VPC and the internet.
-Route Tables:
-Public Route Table: Routes traffic to the internet via the IGW.
-Private Route Table: Routes traffic to the internet via the NAT Gateway.
-NAT Gateway: Allows instances in a private subnet to connect to the internet or other AWS services but prevents the internet from initiating connections with the instances.
-Security Groups: Virtual firewalls that control inbound and outbound traffic for AWS resources.
-Network ACLs (NACLs): Optional layer of security that acts as a firewall for controlling traffic in and out of one or more subnets.
+- VPC (Virtual Private Cloud): A logically isolated section of the AWS cloud where you can launch AWS resources in a virtual network you define.
+- Subnets:
+  - Public Subnet: A subnet with a route to the internet via the Internet Gateway (IGW).
+  - Private Subnet: A subnet without a direct route to the internet but can access it via the NAT Gateway.
+- Internet Gateway (IGW): A horizontally scaled, redundant, and highly available VPC component that allows communication between instances in your VPC and the internet.
+- Route Tables:
+  - Public Route Table: Routes traffic to the internet via the IGW.
+  - Private Route Table: Routes traffic to the internet via the NAT Gateway.
+- NAT Gateway: Allows instances in a private subnet to connect to the internet or other AWS services but prevents the internet from initiating connections with the instances.
+- Security Groups: Virtual firewalls that control inbound and outbound traffic for AWS resources.
+- Network ACLs (NACLs): Optional layer of security that acts as a firewall for controlling traffic in and out of one or more subnets.
 
 ### Conclusion
 This README.md file detailed the process of setting up a VPC with public and private subnets, configuring routing, security groups, and NACLs, and deploying EC2 instances to ensure proper communication and security within the VPC.
