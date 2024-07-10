@@ -266,25 +266,27 @@ To Launch an EC2 Instance in the Public Subnet:
 
 a. Navigate to the EC2 Dashboard.
 
-b. Click on "Launch instance" and Fill in the details:
+b. Click on "Launch instances" and Fill in the details:
 - Name: PublicInstance
-- AMI: Choose an appropriate AMI (e.g., Amazon Linux 2)
+- AMI: Choose an appropriate AMI (e.g., Amazon Linux 2023 AMI)
 - Instance type: Choose an appropriate type (e.g., t2.micro)
 - Key pair: Select an existing key pair or create a new one.
 
-For Network settings:
+For Network settings, click edit and enter the following details:
 - VPC: Select KCVPC
 - Subnet: Select PublicSubnet
 - Auto-assign Public IP: Enable
 - Security group: Select PublicSG
 - Click "Launch instance" and complete the wizard.
 - Verify that the instance can be accessed via SSH using the public IP.
+![Screenshot (61)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/96d4ee82-3a6b-47f1-96cc-72342be7f043)
+![Screenshot (62)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/b81de748-4331-4ad5-8629-05fa9813f4ca)
 
 To Launch an EC2 Instance in the Private Subnet:
 
-a. Click on "Launch instance" again and Fill in the details:
+a. Click on "Launch instances" again and Fill in the details:
 - Name: PrivateInstance
-- AMI: Choose an appropriate AMI (e.g., Amazon Linux 2)
+- AMI: Choose an appropriate AMI (e.g., Amazon Linux 2023 AMI)
 - Instance type: Choose an appropriate type (e.g., t2.micro)
 - Key pair: Select an existing key pair or create a new one.
 
