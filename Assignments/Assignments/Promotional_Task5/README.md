@@ -298,6 +298,8 @@ For Network settings:
 - Click "Launch instance" and complete the wizard.
 - Verify that the instance can access the internet through the NAT Gateway by updating the instance and installing packages.
 - Verify that the instance can communicate with the public instance.
+![Screenshot (63)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/cd561940-b60d-4191-8abe-c1246b323c3c)
+![Screenshot (65)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/ee92d520-9dea-4609-83cc-d50704863fe2)
 
 ### Architecture Diagram
 https://excalidraw.com/#json=tXyVFfe7NzA7fEr1YRIBj,6sZlIHEA3khMk-QYMwCJYg
