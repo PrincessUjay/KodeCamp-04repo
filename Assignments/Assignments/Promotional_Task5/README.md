@@ -169,7 +169,7 @@ b. To Edit Inbound Rules:
   - Click "Save rules".
 
 c. To Edit Outbound Rules:
-- - Go to the "Outbound rules" tab and click "Edit Outbound rules" 
+- Go to the "Outbound rules" tab and click "Edit Outbound rules" 
 - Add a new rule:
   - Type: All traffic.
   - Protocol: All
@@ -188,25 +188,31 @@ a. Navigate to the Network ACLs section in the left-hand menu.
 b. Click on "Create network ACL" and Fill in the details:
 - Name tag: PublicNACL
 - VPC: Select KCVPC
-- Click "Create".
+- Click "Create network ACL".
 
 c. To Edit Inbound Rules:
 - Select the created NACL.
 - Go to the "Inbound rules" tab and click "Edit inbound rules".
-- Add rules for:
+- Click "add new rule" and Add rules for:
   - HTTP (port 80) from 0.0.0.0/0
   - HTTPS (port 443) from 0.0.0.0/0
   - SSH (port 22) from 0.0.0.0/0
   - Click "Save rules".
 
 d. To Edit Outbound Rules:
-- Allow all outbound traffic by default.
+- Go to the "Outbound rules" tab and click "Edit Outbound rules" 
+- Add a new rule:
+  - Type: All traffic.
+  - Protocol: All
+  - Port Range: All
+  - Destination: 0.0.0.0/0 (This will Allow all outbound traffic to any IP address)
+- Click "Save rules".
 
 For Private Subnet NACL:
 a. Click on "Create network ACL" again and Fill in the details:
 - Name tag: PrivateNACL
 - VPC: Select KCVPC
-- Click "Create".
+- Click "Create network ACL".
 
 b. To Edit Inbound Rules:
 - Select the created NACL.
