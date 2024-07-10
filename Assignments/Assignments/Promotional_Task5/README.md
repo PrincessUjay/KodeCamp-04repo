@@ -126,9 +126,9 @@ For Public Security Group:
 a. Navigate to the Security Groups section in the left-hand menu.
 
 b. Click on "Create security group" and Fill in the details:
-- Name tag: PublicSG
-- VPC: Select KCVPC
+- Security group Name: PublicSG
 - Description: Security group for public instances
+- VPC: Select the 'KCVPC' VPC you created.
 - Click "Create security group".
   
 c. To Edit Inbound Rules:
@@ -137,29 +137,42 @@ Go to the "Inbound rules" tab and click "Edit inbound rules".
 - Add rules for:
   - HTTP (port 80) from 0.0.0.0/0
   - HTTPS (port 443) from 0.0.0.0/0
-  - SSH (port 22) from your specific IP (check https://www.whatismyip.com/)
+  - SSH (port 22) from your specific IP (check https://www.whatismyip.com/) i.e type in the IP as a custom one with CIDR notation (for mine: 32)
 - Click "Save rules".
   
 d. To Edit Outbound Rules:
-- Allow all outbound traffic by default.
+- Go to the "Outbound rules" tab and click "Edit Outbound rules" 
+- Add a new rule:
+  - Type: All traffic.
+  - Protocol: All
+  - Port Range: All
+  - Destination: 0.0.0.0/0 (This will Allow all outbound traffic to any IP address)
+- Click "Save rules".
 
 For Private Security Group:
 
-a. Click on "Create security group" again and Fill in the details:
-- Name tag: PrivateSG
-- VPC: Select KCVPC
+a. Click on Security Groups and then click "Create security group" again and Fill in the details:
+- Security group Name: PrivateSG
 - Description: Security group for private instances
+- VPC: Select the 'KCVPC' VPC you created.
 - Click "Create security group".
 
 b. To Edit Inbound Rules:
 - Select the created security group.
 - Go to the "Inbound rules" tab and click "Edit inbound rules".
-- Add rules for:
+- Click "Add rule" and fill in the details:
   - MySQL (port 3306) from PublicSubnet    - CIDR block (10.0.1.0/24)
   - Click "Save rules".
 
 c. To Edit Outbound Rules:
-- Allow all outbound traffic by default.
+- - Go to the "Outbound rules" tab and click "Edit Outbound rules" 
+- Add a new rule:
+  - Type: All traffic.
+  - Protocol: All
+  - Port Range: All
+  - Destination: 0.0.0.0/0 (This will Allow all outbound traffic to any IP address)
+- Click "Save rules".
+N/B: you can also allow it by default.
 
 ### Step 7: Configure Network ACLs (NACLs)
 For Public Subnet NACL:
