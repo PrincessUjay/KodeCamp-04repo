@@ -303,7 +303,7 @@ For Network settings:
 
 ### Architecture Diagram
 https://excalidraw.com/#json=tXyVFfe7NzA7fEr1YRIBj,6sZlIHEA3khMk-QYMwCJYg
-![Screenshot (54)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/ce43ef7e-2806-41cf-9bd3-d8f8ae636f76)
+![Screenshot (67)](https://github.com/PrincessUjay/KodeCamp-04repo/assets/74983978/c019cfe6-dbf2-4b29-8f47-c57a22f5381e)
 
 ### Explanation of Components
 - VPC (Virtual Private Cloud): A logically isolated section of the AWS cloud where you can launch AWS resources in a virtual network you define.
