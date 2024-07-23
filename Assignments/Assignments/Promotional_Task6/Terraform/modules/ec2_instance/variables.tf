@@ -1,14 +1,34 @@
-variable "subnet_id" {
-  description = "The ID of the subnet where the instance will be launched"
+variable "ami" {
+  description = "The AMI ID"
   type        = string
 }
 
-variable "security_group" {
-  description = "The ID of the security group to associate with the instance"
+variable "instance_type" {
+  description = "The instance type"
   type        = string
 }
 
-variable "script_path" {
-  description = "The path to the script to run on instance launch"
+variable "public_subnet_id" {
+  description = "The public subnet ID"
+  type        = string
+}
+
+variable "private_subnet_id" {
+  description = "The private subnet ID"
+  type        = string
+}
+
+variable "public_sg_id" {
+  description = "The public security group ID"
+  type        = string
+}
+
+variable "private_sg_id" {
+  description = "The private security group ID"
+  type        = string
+}
+
+variable "key_name" {
+  description = "KCVPCkeypair.pem"
   type        = string
 }

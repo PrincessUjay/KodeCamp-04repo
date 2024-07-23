@@ -1,17 +1,35 @@
-# modules/instances/main.tf
-resource "aws_instance" "main" {
-  ami                    = "ami-0c21ae4a6fdadacc0"  # Ubuntu 20.04 LTS in eu-west-1
-  instance_type          = "t2.micro"
-  subnet_id              = var.subnet_id
-  security_groups        = [var.security_group]
+# modules/ec2_instance/main.tf
+data "aws_key_pair" "key_pair" {
+  key_name           = "KCVPCkeypair"
+  include_public_key = true
+}
 
-  user_data = file(var.script_path)
+resource "aws_instance" "public_instance" {
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  subnet_id              = var.public_subnet_id
+  security_group         = [var.public_sg_id]
+  associate_public_ip_address = true
+  key_name                    = data.aws_key_pair.key_pair.key_name
+
+
+  user_data = file("${path.module}/scripts/scripts/install_nginx.sh")
 
   tags = {
-    Name = "EC2Instance"
+    Name = "PublicInstance"
   }
 }
 
-output "instance_id" {
-  value = aws_instance.main.id
+resource "aws_instance" "private_instance" {
+  ami               = var.ami
+  instance_type     = var.instance_type
+  subnet_id         = var.private_subnet_id
+  security_group    = [var.private_sg_id]
+  key_name                    = data.aws_key_pair.key_pair.key_name
+
+  user_data = file("${path.module}/scripts/scripts/install_postgresql.sh")
+
+  tags = {
+    Name = "PrivateInstance"
+  }
 }

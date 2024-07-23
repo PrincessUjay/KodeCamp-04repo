@@ -321,3 +321,68 @@ Network ACLs (NACLs): Optional layer of security that acts as a firewall for con
 Conclusion
 
 This README.md file detailed the process of setting up a VPC with public and private subnets, configuring routing, security groups, and NACLs, and deploying EC2 instances to ensure proper communication and security within the VPC using Terraform.
+
+
+TERRAFORM VPC CONFIGURATION
+Step 1: Install Terraform
+Make sure you have Terraform installed on your machine. You can download it from the official website.
+
+Step 2: Set Up Your Directory Structure
+Create a project directory to organize your Terraform files.
+mkdir terraform
+cd terraform
+mkdir modules scripts
+
+Step 3: Create the Main Terraform Configuration File
+In the kcvpc directory, create a file named main.tf. This will be the main entry point for your Terraform configuration.
+Step 4: Create the VPC Module
+In the modules directory, create a subdirectory named vpc and add a main.tf file inside it.
+
+mkdir modules/vpc
+modules/vpc/main.tf:
+Step 5: Create the Subnets Module
+In the modules directory, create a subdirectory named subnets and add a main.tf file inside it.
+
+mkdir modules/subnets
+modules/subnets/main.tf:
+Step 6: Create the Internet Gateway Module
+In the modules directory, create a subdirectory named igw and add a main.tf file inside it.
+
+
+mkdir modules/igw
+modules/igw/main.tf:
+Step 7: Create the Route Tables Module
+In the modules directory, create a subdirectory named route-tables and add a main.tf file inside it.
+
+mkdir modules/route-tables
+modules/route-tables/main.tf:
+Step 8: Create the NAT Gateway Module
+In the modules directory, create a subdirectory named nat-gateway and add a main.tf file inside it.
+
+mkdir modules/nat-gateway
+modules/nat-gateway/main.tf:
+Step 9: Create the Security Groups Module
+In the modules directory, create a subdirectory named security-groups and add a main.tf file inside it.
+
+mkdir modules/security-groups
+modules/security-groups/main.tf:
+Step 10: Create the Network ACLs Module
+In the modules directory, create a subdirectory named nacls and add a main.tf file inside it.
+
+mkdir modules/nacls
+modules/nacls/main.tf:
+Step 11: Create the Instances Module
+In the modules directory, create a subdirectory named instances and add a main.tf file inside it.
+
+mkdir modules/instances
+modules/instances/main.tf:
+Step 12: Create Variables Files
+Create a variables.tf file in each module directory to define the required variables.
+
+modules/subnets/variables.tf:
+modules/igw/variables.tf:
+modules/route-tables/variables.tf:
+modules/nat-gateway/variables.tf:
+modules/security-groups/variables.tf:
+modules/nacls/variables.tf:
+modules/instances/variables.tf:
