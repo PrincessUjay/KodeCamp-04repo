@@ -70,14 +70,6 @@ Create a directory for your project (terraform) and set up the following structu
 
                 └── variables.tf
 
-            ├── nacl
-
-                └── main.tf
-
-                └── outputs.tf
-
-                └── variables.tf
-
             ├── nat_gateway
 
                 └── main.tf
@@ -102,6 +94,13 @@ Create a directory for your project (terraform) and set up the following structu
 
                 └── variables.tf
 
+            ├── subnet
+
+                └── main.tf
+
+                └── outputs.tf
+
+                └── variables.tf
             ├── vpc
 
                 └── main.tf
@@ -293,6 +292,268 @@ terraform/modules/ec2_instance/scripts/scripts/install_postgresql.sh
     sudo apt-get install -y postgresql postgresql-contrib
     sudo systemctl start postgresql
     sudo systemctl enable postgresql
+
+terraform/modules/nat_gateway/main.tf
+
+    resource "aws_eip" "nat" {
+      domain = "vpc"
+    }
+    
+    resource "aws_nat_gateway" "nat" {
+      allocation_id = aws_eip.nat.id
+      subnet_id     = var.public_subnet_id
+      tags = {
+        Name = "KCVPC-NAT"
+      }
+    }
+    
+    resource "aws_route" "private_nat" {
+      route_table_id         = var.private_route_table_id
+      destination_cidr_block = "0.0.0.0/0"
+      nat_gateway_id         = aws_nat_gateway.nat.id
+    }
+
+terraform/modules/nat_gateway/outputs.tf
+
+    output "nat_gateway_id" {
+      value = aws_nat_gateway.nat.id
+    }
+
+terraform/modules/nat_gateway/variables.tf
+
+    variable "public_subnet_id" {
+      description = "The public subnet ID"
+      type        = string
+    }
+    
+    variable "private_route_table_id" {
+      description = "The private route table ID"
+      type        = string
+    }
+
+terraform/modules/route_table/main.tf
+
+    resource "aws_route_table" "public" {
+      vpc_id = var.vpc_id
+      route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = var.igw_id
+      }
+      tags = {
+        Name = "PublicRouteTable"
+      }
+    }
+    
+    resource "aws_route_table_association" "public" {
+      subnet_id      = var.public_subnet_id
+      route_table_id = aws_route_table.public.id
+    }
+    
+    resource "aws_route_table" "private" {
+      vpc_id = var.vpc_id
+      tags = {
+        Name = "PrivateRouteTable"
+      }
+    }
+    
+    resource "aws_route_table_association" "private" {
+      subnet_id      = var.private_subnet_id
+      route_table_id = aws_route_table.private.id
+    }
+
+terraform/modules/route_table/outputs.tf
+
+    output "public_route_table_id" {
+      value = aws_route_table.public.id
+    }
+    
+    output "private_route_table_id" {
+      value = aws_route_table.private.id
+    }
+
+terraform/modules/route_table/variables.tf
+
+    variable "vpc_id" {
+      description = "The VPC ID"
+      type        = string
+    }
+    
+    variable "igw_id" {
+      description = "The Internet Gateway ID"
+      type        = string
+    }
+    
+    variable "public_subnet_id" {
+      description = "The public subnet ID"
+      type        = string
+    }
+    
+    variable "private_subnet_id" {
+      description = "The private subnet ID"
+      type        = string
+    }
+
+terraform/modules/security_group/main.tf
+    
+    resource "aws_security_group" "public_sg" {
+      vpc_id = var.vpc_id
+      name   = "PublicSecurityGroup"
+    
+      ingress {
+        from_port   = 80
+        to_port     = 80
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    
+      ingress {
+        from_port   = 443
+        to_port     = 443
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    
+      ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = [var.public_subnet_cidr]
+      }
+    
+      egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    }
+    
+    resource "aws_security_group" "private_sg" {
+      vpc_id = var.vpc_id
+      name   = "PrivateSecurityGroup"
+    
+      ingress {
+        from_port   = 5432
+        to_port     = 5432
+        protocol    = "tcp"
+        cidr_blocks = [var.public_subnet_cidr]
+      }
+    
+      egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    }
+
+terraform/modules/security_group/outputs.tf
+
+    output "public_sg_id" {
+      value = aws_security_group.public_sg.id
+    }
+    
+    output "private_sg_id" {
+      value = aws_security_group.private_sg.id
+    }
+
+terraform/modules/security_group/variables.tf
+
+    variable "vpc_id" {
+      description = "The VPC ID"
+      type        = string
+    }
+    
+    variable "public_subnet_cidr" {
+      description = "The CIDR block for the public subnet"
+      type        = string
+    }
+    
+    variable "my_ip" {
+      description = "Your local IP address"
+      type        = string
+    }
+
+terraform/modules/subnet/main.tf
+
+    resource "aws_subnet" "public" {
+      vpc_id            = var.vpc_id
+      cidr_block        = var.public_subnet_cidr
+      availability_zone = var.public_subnet_az
+      map_public_ip_on_launch = true
+      tags = {
+        Name = "PublicSubnet"
+      }
+    }
+    
+    resource "aws_subnet" "private" {
+      vpc_id            = var.vpc_id
+      cidr_block        = var.private_subnet_cidr
+      availability_zone = var.private_subnet_az
+      tags = {
+        Name = "PrivateSubnet"
+      }
+    }
+
+terraform/modules/subnet/outputs.tf
+
+    output "public_subnet_id" {
+      value = aws_subnet.public.id
+    }
+    
+    output "private_subnet_id" {
+      value = aws_subnet.private.id
+    }
+
+terraform/modules/subnet/variables.tf
+
+    variable "vpc_id" {
+      description = "The VPC ID"
+      type        = string
+    }
+    
+    variable "public_subnet_cidr" {
+      description = "The CIDR block for the public subnet"
+      type        = string
+    }
+    
+    variable "private_subnet_cidr" {
+      description = "The CIDR block for the private subnet"
+      type        = string
+    }
+
+terraform/modules/vpc/main.tf
+
+    resource "aws_vpc" "main" {
+      cidr_block = var.vpc_cidr
+      tags = {
+        Name = "KCVPC"
+      }
+    }
+    
+    resource "aws_internet_gateway" "main" {
+      vpc_id = aws_vpc.main.id
+      tags = {
+        Name = "KCVPC-IGW"
+      }
+    }
+
+terraform/modules/vpc/outputs.tf
+ 
+    output "vpc_id" {
+      value = aws_vpc.main.id
+    }
+    
+    output "igw_id" {
+      value = aws_internet_gateway.main.id
+    }
+
+terraform/modules/vpc/variables.tf
+
+    variable "vpc_cidr" {
+      description = "The CIDR block for the VPC"
+      type        = string
+    }
 
 ### Initialize Terraform
 * Navigate to the root directory (terraform) and initialize Terraform 
