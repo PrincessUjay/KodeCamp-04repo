@@ -119,54 +119,98 @@ terraform/variables.tf
 
 terraform/modules/ec2_instance/main.tf
 
-    data "aws_key_pair" "key_pair" {
-      key_name           = "KCVPCkeypair"
-      include_public_key = true
+        data "aws_key_pair" "key_pair" {
+          key_name           = "KCVPCkeypair"
+          include_public_key = true
+        }
+        
+        resource "aws_instance" "public_instance" {
+          ami                    = var.ami
+          instance_type          = var.instance_type
+          subnet_id              = var.public_subnet_id
+          security_groups         = [var.public_sg_id]
+          associate_public_ip_address = true
+          key_name                    = data.aws_key_pair.key_pair.key_name
+        
+        
+          user_data = file("${path.module}/scripts/scripts/install_nginx.sh")
+        
+          tags = {
+            Name = "PublicInstance"
+          }
+        }
+        
+        resource "aws_instance" "private_instance" {
+          ami               = var.ami
+          instance_type     = var.instance_type
+          subnet_id         = var.private_subnet_id
+          security_groups    = [var.private_sg_id]
+          key_name                    = data.aws_key_pair.key_pair.key_name
+        
+          user_data = file("${path.module}/scripts/scripts/install_postgresql.sh")
+        
+          tags = {
+            Name = "PrivateInstance"
+          }
+        }
+        
+terraform/modules/ec2_instance/outputs.tf
+
+        output "public_instance_id" {
+          value = aws_instance.public_instance.id
+        }
+        
+        output "private_instance_id" {
+          value = aws_instance.private_instance.id
+        }
+
+terraform/modules/ec2_instance/variables.tf
+
+    variable "ami" {
+      description = "The AMI ID"
+      type        = string
     }
     
-    resource "aws_instance" "public_instance" {
-      ami                    = var.ami
-      instance_type          = var.instance_type
-      subnet_id              = var.public_subnet_id
-      security_groups         = [var.public_sg_id]
-      associate_public_ip_address = true
-      key_name                    = data.aws_key_pair.key_pair.key_name
-    
-    
-      user_data = file("${path.module}/scripts/scripts/install_nginx.sh")
-    
-      tags = {
-        Name = "PublicInstance"
-      }
+    variable "instance_type" {
+      description = "The instance type"
+      type        = string
     }
     
-    resource "aws_instance" "private_instance" {
-      ami               = var.ami
-      instance_type     = var.instance_type
-      subnet_id         = var.private_subnet_id
-      security_groups    = [var.private_sg_id]
-      key_name                    = data.aws_key_pair.key_pair.key_name
+    variable "public_subnet_id" {
+      description = "The public subnet ID"
+      type        = string
+    }
     
-      user_data = file("${path.module}/scripts/scripts/install_postgresql.sh")
+    variable "private_subnet_id" {
+      description = "The private subnet ID"
+      type        = string
+    }
     
-      tags = {
-        Name = "PrivateInstance"
-      }
+    variable "public_sg_id" {
+      description = "The public security group ID"
+      type        = string
+    }
+    
+    variable "private_sg_id" {
+      description = "The private security group ID"
+      type        = string
     }
 
 terraform/modules/ec2_instance/scripts/scripts/install_nginx.sh
-#!/bin/bash
-sudo apt-get update
-sudo apt-get install -y nginx
-sudo systemctl start nginx
-sudo systemctl enable nginx
+
+    #!/bin/bash
+    sudo apt-get update
+    sudo apt-get install -y nginx
+    sudo systemctl start nginx
+    sudo systemctl enable nginx
 
 terraform/modules/ec2_instance/scripts/scripts/install_postgresql.sh
-#!/bin/bash
-sudo apt-get update
-sudo apt-get install -y postgresql postgresql-contrib
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
+
+    #!/bin/bash
+    sudo apt-get update
+    sudo apt-get install -y postgresql postgresql-contrib
+    sudo systemctl start postgresql
+    sudo systemctl enable postgresql
 
 ### Initialize Terraform
 * Navigate to the root directory (terraform) and initialize Terraform 
