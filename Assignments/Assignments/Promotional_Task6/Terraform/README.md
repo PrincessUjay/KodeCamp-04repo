@@ -113,56 +113,138 @@ Create a directory for your project (terraform) and set up the following structu
 #### Write the Terraform Configuration
 terraform/main.tf
 
+    provider "aws" {
+      profile = "PrincessKodeCamp"
+      region = "eu-west-1"
+    }
+    
+    module "vpc" {
+      source   = "./modules/vpc"
+      vpc_cidr = "10.0.0.0/16"
+    }
+    
+    module "subnet" {
+      source               = "./modules/subnet"
+      vpc_id               = module.vpc.vpc_id
+      public_subnet_cidr   = "10.0.1.0/24"
+      private_subnet_cidr  = "10.0.2.0/24"
+      public_subnet_az     = "eu-west-1a"
+      private_subnet_az    = "eu-west-1a"
+    }
+    
+    module "route_table" {
+      source              = "./modules/route_table"
+      vpc_id              = module.vpc.vpc_id
+      igw_id              = module.vpc.igw_id
+      public_subnet_id    = module.subnet.public_subnet_id
+      private_subnet_id   = module.subnet.private_subnet_id
+    }
+    
+    module "nat_gateway" {
+      source                  = "./modules/nat_gateway"
+      public_subnet_id        = module.subnet.public_subnet_id
+      private_route_table_id  = module.route_table.private_route_table_id
+    }
+    
+    module "security_group" {
+      source             = "./modules/security_group"
+      vpc_id             = module.vpc.vpc_id
+      public_subnet_cidr = "10.0.1.0/24"
+      my_ip              = "105.112.113.236" # Run curl ifconfig.me on your terminal or visit https://www.whatismyip.com/
+    }
+    
+    module "ec2_instance" {
+      source           = "./modules/ec2_instance"
+      ami              = "ami-0c38b837cd80f13bb" # Ubuntu Server 24.04 LTS
+      instance_type    = "t2.micro"
+      public_subnet_id = module.subnet.public_subnet_id
+      private_subnet_id = module.subnet.private_subnet_id
+      public_sg_id      = module.security_group.public_sg_id
+      private_sg_id     = module.security_group.private_sg_id
+      key_name           = var.key_name
+    }
+      
 terraform/outputs.tf
 
+    output "vpc_id" {
+      value = module.vpc.vpc_id
+    }
+    
+    output "public_subnet_id" {
+      value = module.subnet.public_subnet_id
+    }
+    
+    output "private_subnet_id" {
+      value = module.subnet.private_subnet_id
+    }
+    
+    output "public_instance_id" {
+      value = module.ec2_instance.public_instance_id
+    }
+    
+    output "private_instance_id" {
+      value = module.ec2_instance.private_instance_id
+    }
+    
 terraform/variables.tf
+
+    variable "aws_region" {
+      description = "The AWS region to deploy in"
+      type        = string
+      default     = "eu-west-1"
+    }
+    
+    variable "key_name" {
+      description = "The name of the key pair to use for SSH access"
+      type        = string
+    }
 
 terraform/modules/ec2_instance/main.tf
 
-        data "aws_key_pair" "key_pair" {
-          key_name           = "KCVPCkeypair"
-          include_public_key = true
-        }
-        
-        resource "aws_instance" "public_instance" {
-          ami                    = var.ami
-          instance_type          = var.instance_type
-          subnet_id              = var.public_subnet_id
-          security_groups         = [var.public_sg_id]
-          associate_public_ip_address = true
-          key_name                    = data.aws_key_pair.key_pair.key_name
-        
-        
-          user_data = file("${path.module}/scripts/scripts/install_nginx.sh")
-        
-          tags = {
-            Name = "PublicInstance"
-          }
-        }
-        
-        resource "aws_instance" "private_instance" {
-          ami               = var.ami
-          instance_type     = var.instance_type
-          subnet_id         = var.private_subnet_id
-          security_groups    = [var.private_sg_id]
-          key_name                    = data.aws_key_pair.key_pair.key_name
-        
-          user_data = file("${path.module}/scripts/scripts/install_postgresql.sh")
-        
-          tags = {
-            Name = "PrivateInstance"
-          }
-        }
+    data "aws_key_pair" "key_pair" {
+      key_name           = "KCVPCkeypair"
+      include_public_key = true
+    }
+    
+    resource "aws_instance" "public_instance" {
+      ami                    = var.ami
+      instance_type          = var.instance_type
+      subnet_id              = var.public_subnet_id
+      security_groups         = [var.public_sg_id]
+      associate_public_ip_address = true
+      key_name                    = data.aws_key_pair.key_pair.key_name
+    
+    
+      user_data = file("${path.module}/scripts/scripts/install_nginx.sh")
+    
+      tags = {
+        Name = "PublicInstance"
+      }
+    }
+    
+    resource "aws_instance" "private_instance" {
+      ami               = var.ami
+      instance_type     = var.instance_type
+      subnet_id         = var.private_subnet_id
+      security_groups    = [var.private_sg_id]
+      key_name                    = data.aws_key_pair.key_pair.key_name
+    
+      user_data = file("${path.module}/scripts/scripts/install_postgresql.sh")
+    
+      tags = {
+        Name = "PrivateInstance"
+      }
+    }
         
 terraform/modules/ec2_instance/outputs.tf
 
-        output "public_instance_id" {
-          value = aws_instance.public_instance.id
-        }
-        
-        output "private_instance_id" {
-          value = aws_instance.private_instance.id
-        }
+    output "public_instance_id" {
+      value = aws_instance.public_instance.id
+    }
+    
+    output "private_instance_id" {
+      value = aws_instance.private_instance.id
+    }
 
 terraform/modules/ec2_instance/variables.tf
 
