@@ -31,10 +31,10 @@ To connect your AWS CLI to your AWS console for the user PrincessKodeCamp and co
 
   - When prompted, enter the Access Key ID and Secret Access Key for PrincessKodeCamp.
 
-AWS Access Key ID [None]: YOUR_ACCESS_KEY_ID
-AWS Secret Access Key [None]: YOUR_SECRET_ACCESS_KEY
-Default region name [None]: eu-west-1
-Default output format [None]: json  # or your preferred output format
+        AWS Access Key ID [None]:                YOUR_ACCESS_KEY_ID
+        AWS Secret Access Key [None]:         YOUR_SECRET_ACCESS_KEY
+        Default region name [None]: eu-west-1
+        Default output format [None]: json  # or your preferred output format
 
 
 2. Verify Configuration
