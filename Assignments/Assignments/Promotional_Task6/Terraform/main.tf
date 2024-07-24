@@ -40,11 +40,7 @@ module "security_group" {
 
 module "ec2_instance" {
   source           = "./modules/ec2_instance"
-<<<<<<< HEAD
-  ami              = "ami-0c38b837cd80f13bb" # Ubuntu Server 24.04 LTS (HVM)
-=======
   ami              = "ami-0c38b837cd80f13bb" # Ubuntu Server 24.04 LTS
->>>>>>> 41273e7863d1387bd623aadd8d0110eea7346575
   instance_type    = "t2.micro"
   public_subnet_id = module.subnet.public_subnet_id
   private_subnet_id = module.subnet.private_subnet_id
