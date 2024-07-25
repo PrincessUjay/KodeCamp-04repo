@@ -12,7 +12,6 @@ resource "aws_instance" "public_instance" {
   associate_public_ip_address = true
   key_name                    = data.aws_key_pair.key_pair.key_name
 
-
   user_data = file("${path.module}/scripts/scripts/install_nginx.sh")
 
   tags = {
