@@ -1,26 +1,19 @@
 variable "vpc_id" {
-  description = "The ID of the VPC"
+  description = "ID of the VPC to create route tables in"
   type        = string
-}
-
-variable "subnet_ids" {
-  description = "The IDs of the subnets to associate with the route table"
-  type        = list(string)
-}
-
-variable "is_public" {
-  description = "Boolean to determine if the route table is public"
-  type        = bool
 }
 
 variable "igw_id" {
-  description = "The ID of the Internet Gateway"
+  description = "ID of the Internet Gateway to use for the public route table"
   type        = string
-  default     = null
 }
 
-variable "nat_gateway_id" {
-  description = "The ID of the NAT Gateway"
+variable "public_subnet_id" {
+  description = "ID of the public subnet to associate with the public route table"
   type        = string
-  default     = null
+}
+
+variable "private_subnet_id" {
+  description = "ID of the private subnet to associate with the private route table"
+  type        = string
 }
