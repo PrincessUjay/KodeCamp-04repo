@@ -1,14 +1,14 @@
 variable "vpc_id" {
-  description = "The VPC ID"
+  description = "ID of the VPC to create security groups in"
   type        = string
 }
 
 variable "public_subnet_cidr" {
-  description = "The CIDR block for the public subnet"
+  description = "CIDR block of the public subnet"
   type        = string
 }
 
 variable "my_ip" {
-  description = "Your local IP address"
+  description = "Your public IP address for SSH access"
   type        = string
 }

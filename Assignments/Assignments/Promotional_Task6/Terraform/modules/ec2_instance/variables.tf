@@ -1,34 +1,29 @@
 variable "ami" {
-  description = "The AMI ID"
+  description = "AMI ID to use for the instances"
   type        = string
 }
 
 variable "instance_type" {
-  description = "The instance type"
+  description = "Type of EC2 instance to launch"
   type        = string
 }
 
 variable "public_subnet_id" {
-  description = "The public subnet ID"
+  description = "ID of the public subnet"
   type        = string
 }
 
 variable "private_subnet_id" {
-  description = "The private subnet ID"
+  description = "ID of the private subnet"
   type        = string
 }
 
 variable "public_sg_id" {
-  description = "The public security group ID"
+  description = "ID of the public security group"
   type        = string
 }
 
 variable "private_sg_id" {
-  description = "The private security group ID"
-  type        = string
-}
-
-variable "key_name" {
-  description = "KCVPCkeypair.pem"
+  description = "ID of the private security group"
   type        = string
 }

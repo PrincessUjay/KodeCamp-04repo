@@ -1,24 +1,14 @@
 variable "vpc_id" {
-  description = "The VPC ID"
+  description = "ID of the VPC to create subnets in"
   type        = string
 }
 
 variable "public_subnet_cidr" {
-  description = "The CIDR block for the public subnet"
+  description = "CIDR block for the public subnet"
   type        = string
 }
 
 variable "private_subnet_cidr" {
-  description = "The CIDR block for the private subnet"
-  type        = string
-}
-
-variable "public_subnet_az" {
-  description = "The availability zone for the public subnet"
-  type        = string
-}
-
-variable "private_subnet_az" {
-  description = "The availability zone for the private subnet"
+  description = "CIDR block for the private subnet"
   type        = string
 }
