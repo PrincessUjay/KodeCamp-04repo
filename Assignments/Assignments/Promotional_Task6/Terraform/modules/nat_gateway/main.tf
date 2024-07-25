@@ -1,13 +1,18 @@
 # modules/nat_gateway/main.tf
 resource "aws_eip" "nat" {
-  vpc = true
+  domain = "vpc"
 }
 
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat.id
-  subnet_id     = var.subnet_id
+  subnet_id     = var.public_subnet_id
+  tags = {
+    Name = "KCVPC-NAT"
+  }
 }
 
-output "nat_gateway_id" {
-  value = aws_nat_gateway.nat.id
+resource "aws_route" "private_nat" {
+  route_table_id         = var.private_route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat.id
 }
