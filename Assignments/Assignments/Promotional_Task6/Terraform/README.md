@@ -597,36 +597,12 @@ To clean up all resources created by Terraform, run
 ![Screenshot (117)](https://github.com/user-attachments/assets/85c11837-82b1-4391-a612-aa48ee494276) ![Screenshot (118)](https://github.com/user-attachments/assets/3f57467a-36a9-4a3a-8d35-9589d876715a) ![Screenshot (119)](https://github.com/user-attachments/assets/3faaacf1-9006-4f83-8fd6-c4f2b05e9e75) ![Screenshot (120)](https://github.com/user-attachments/assets/3a749053-73f0-4ce3-a600-7886493bc8fc)
 
 ### Module Descriptions
-* vpc: Configures the VPC, public and private subnets.
+* vpc: Configures the VPC.
 * nat_gateway: Sets up the NAT Gateway for private subnet internet access.
 * route_table: Manages routing tables for public and private subnets.
 * security_group: Defines security groups for public and private EC2 instances.
-* nacl: Configures Network ACLs for inbound and outbound traffic.
+* subnet: Configures the public and private subnets within the VPC.
 * ec2_instance: Launches EC2 instances with user data scripts for software installation.
-
-### Variables
-* aws_region: AWS region for resource deployment.
-* vpc_cidr: CIDR block for the VPC.
-* public_subnet_cidr: CIDR block for the public subnet.
-* private_subnet_cidr: CIDR block for the private subnet.
-* availability_zone (az): Availability Zone for subnets.
-* ssh_cidr: CIDR block allowed to SSH into public instances.
-* vpc_cidr: CIDR block for the VPC.
-* public_instance_ami: AMI ID for the public EC2 instance.
-* private_instance_ami: AMI ID for the private EC2 instance.
-* instance_type: Type of EC2 instance.
-
-### Outputs
-* vpc_id: The ID of the created VPC.
-* public_subnet_id: The ID of the public subnet.
-* private_subnet_id: The ID of the private subnet.
-* nat_gateway_id: The ID of the NAT Gateway.
-* public_sg_id: The ID of the public security group.
-* private_sg_id: The ID of the private security group.
-* public_instance_id: The ID of the public EC2 instance.
-* private_instance_id: The ID of the private EC2 instance.
-* public_nacl_id: The ID of the public subnet NACL.
-* private_nacl_id: The ID of the private subnet NACL.
 
 ### Architecture Diagram
 
