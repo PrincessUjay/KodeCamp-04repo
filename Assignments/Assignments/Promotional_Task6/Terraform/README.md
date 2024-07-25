@@ -558,7 +558,9 @@ terraform/modules/vpc/variables.tf
 ### Initialize Terraform
 * Navigate to the root directory (terraform) and initialize Terraform 
 (Run the command terraform init): ![Screenshot 2024-07-23 172830](https://github.com/user-attachments/assets/ee0ebd2d-cad4-43ae-b3eb-1f10a88d6b8c) ![Screenshot (80)](https://github.com/user-attachments/assets/52146bea-e1ab-45df-bce4-2d95e754e139)
-* Check if the configuration is valid and Run terraform plan if the configuration is valid
+### Check if the configuration is valid 
+* Run terraform plan if the configuration is valid.
+* Enter your keypair and follow the prompt to input 'yes'.
 ![Screenshot 2024-07-24 003547](https://github.com/user-attachments/assets/20c579a0-4f0a-4c54-8e78-a5483ec9b7d2) ![Screenshot (83)](https://github.com/user-attachments/assets/8305096c-7268-462c-b0e1-9416728b4179) ![Screenshot (84)](https://github.com/user-attachments/assets/e1bd7d4c-d160-4430-aa72-e1d971de8631) ![Screenshot (85)](https://github.com/user-attachments/assets/b0ff5390-0347-443f-9d7d-3814d0b220e5) ![Screenshot (86)](https://github.com/user-attachments/assets/fc531e64-dccd-4502-8191-ea284e1f79f0) ![Screenshot (87)](https://github.com/user-attachments/assets/6d247b22-2a46-4556-8d9b-cf839d0c02e3) ![Screenshot (88)](https://github.com/user-attachments/assets/a5da0219-a3ec-4edb-8829-f3fb9174b6bd) ![Screenshot (90)](https://github.com/user-attachments/assets/a19d1efa-f69e-4055-a95c-568721812c37) ![Screenshot (92)](https://github.com/user-attachments/assets/5f7f90ba-ec06-4d40-8434-1267ca7a2fa5) ![Screenshot (93)](https://github.com/user-attachments/assets/6dc76a74-7b06-4eef-b333-681709de7dae) ![Screenshot (94)](https://github.com/user-attachments/assets/8b8a7ccd-67d3-4af1-88ca-59dad432a7d0) ![Screenshot (95)](https://github.com/user-attachments/assets/d413ad6a-8452-4f12-9349-a5b6e9189397) ![Screenshot (96)](https://github.com/user-attachments/assets/0e00331b-ebab-4923-8e1a-00e831b25b1e) ![Screenshot (97)](https://github.com/user-attachments/assets/696c41e4-0674-44d0-a3f0-b52c97f577e3) ![Screenshot (98)](https://github.com/user-attachments/assets/fd18ab0f-fbc7-4c79-b154-b531af35d2c5) ![Screenshot (99)](https://github.com/user-attachments/assets/4ad66c32-65f6-494a-914e-b019a412db8d)
 
 ### Review Configuration
@@ -566,6 +568,7 @@ terraform/modules/vpc/variables.tf
 
       terraform plan -out=tfplan.out
   
+ * Enter your keypair and follow the prompt to input 'yes' 
 ![Screenshot (103)](https://github.com/user-attachments/assets/5be0187d-9657-44da-8ac4-00a2ccdf064b)
 ### Apply Configuration
 Apply the Terraform configuration to create the resources:
@@ -593,6 +596,8 @@ After applying, check the AWS Console to verify the following:
 To clean up all resources created by Terraform, run 
 
     terraform destroy
+
+* Enter your keypair and follow the prompt to input 'yes'
 
 ![Screenshot (117)](https://github.com/user-attachments/assets/85c11837-82b1-4391-a612-aa48ee494276) ![Screenshot (118)](https://github.com/user-attachments/assets/3f57467a-36a9-4a3a-8d35-9589d876715a) ![Screenshot (119)](https://github.com/user-attachments/assets/3faaacf1-9006-4f83-8fd6-c4f2b05e9e75) ![Screenshot (120)](https://github.com/user-attachments/assets/3a749053-73f0-4ce3-a600-7886493bc8fc)
 
