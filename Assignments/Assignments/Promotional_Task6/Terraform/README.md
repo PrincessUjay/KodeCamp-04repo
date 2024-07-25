@@ -188,13 +188,13 @@ terraform/outputs.tf
 terraform/variables.tf
 
     variable "aws_region" {
-      description = "The AWS region to deploy in"
+      description = "AWS region where the resources will be deployed"
       type        = string
       default     = "eu-west-1"
     }
     
     variable "key_name" {
-      description = "The name of the key pair to use for SSH access"
+      description = "Name of the SSH key pair for accessing EC2 instances"
       type        = string
     }
 
@@ -248,32 +248,32 @@ terraform/modules/ec2_instance/outputs.tf
 terraform/modules/ec2_instance/variables.tf
 
     variable "ami" {
-      description = "The AMI ID"
+      description = "AMI ID to use for the instances"
       type        = string
     }
     
     variable "instance_type" {
-      description = "The instance type"
+      description = "Type of EC2 instance to launch"
       type        = string
     }
     
     variable "public_subnet_id" {
-      description = "The public subnet ID"
+      description = "ID of the public subnet"
       type        = string
     }
     
     variable "private_subnet_id" {
-      description = "The private subnet ID"
+      description = "ID of the private subnet"
       type        = string
     }
     
     variable "public_sg_id" {
-      description = "The public security group ID"
+      description = "ID of the public security group"
       type        = string
     }
     
     variable "private_sg_id" {
-      description = "The private security group ID"
+      description = "ID of the private security group"
       type        = string
     }
 
@@ -322,12 +322,12 @@ terraform/modules/nat_gateway/outputs.tf
 terraform/modules/nat_gateway/variables.tf
 
     variable "public_subnet_id" {
-      description = "The public subnet ID"
+      description = "ID of the public subnet where the NAT gateway will be created"
       type        = string
     }
     
     variable "private_route_table_id" {
-      description = "The private route table ID"
+      description = "ID of the private route table to associate with the NAT gateway"
       type        = string
     }
 
@@ -557,8 +557,7 @@ terraform/modules/vpc/variables.tf
 
 ### Initialize Terraform
 * Navigate to the root directory (terraform) and initialize Terraform 
-(Run the command terraform init): ![Screenshot 2024-07-23 172830](https://github.com/user-attachments/assets/ee0ebd2d-cad4-43ae-b3eb-1f10a88d6b8c)
-![Screenshot (80)](https://github.com/user-attachments/assets/52146bea-e1ab-45df-bce4-2d95e754e139)
+(Run the command terraform init): ![Screenshot 2024-07-23 172830](https://github.com/user-attachments/assets/ee0ebd2d-cad4-43ae-b3eb-1f10a88d6b8c) ![Screenshot (80)](https://github.com/user-attachments/assets/52146bea-e1ab-45df-bce4-2d95e754e139)
 * Check if the configuration is valid and Run terraform plan if the configuration is valid
 ![Screenshot 2024-07-24 003547](https://github.com/user-attachments/assets/20c579a0-4f0a-4c54-8e78-a5483ec9b7d2) ![Screenshot (83)](https://github.com/user-attachments/assets/8305096c-7268-462c-b0e1-9416728b4179) ![Screenshot (84)](https://github.com/user-attachments/assets/e1bd7d4c-d160-4430-aa72-e1d971de8631) ![Screenshot (85)](https://github.com/user-attachments/assets/b0ff5390-0347-443f-9d7d-3814d0b220e5) ![Screenshot (86)](https://github.com/user-attachments/assets/fc531e64-dccd-4502-8191-ea284e1f79f0) ![Screenshot (87)](https://github.com/user-attachments/assets/6d247b22-2a46-4556-8d9b-cf839d0c02e3) ![Screenshot (88)](https://github.com/user-attachments/assets/a5da0219-a3ec-4edb-8829-f3fb9174b6bd) ![Screenshot (90)](https://github.com/user-attachments/assets/a19d1efa-f69e-4055-a95c-568721812c37) ![Screenshot (92)](https://github.com/user-attachments/assets/5f7f90ba-ec06-4d40-8434-1267ca7a2fa5) ![Screenshot (93)](https://github.com/user-attachments/assets/6dc76a74-7b06-4eef-b333-681709de7dae) ![Screenshot (94)](https://github.com/user-attachments/assets/8b8a7ccd-67d3-4af1-88ca-59dad432a7d0) ![Screenshot (95)](https://github.com/user-attachments/assets/d413ad6a-8452-4f12-9349-a5b6e9189397) ![Screenshot (96)](https://github.com/user-attachments/assets/0e00331b-ebab-4923-8e1a-00e831b25b1e) ![Screenshot (97)](https://github.com/user-attachments/assets/696c41e4-0674-44d0-a3f0-b52c97f577e3) ![Screenshot (98)](https://github.com/user-attachments/assets/fd18ab0f-fbc7-4c79-b154-b531af35d2c5) ![Screenshot (99)](https://github.com/user-attachments/assets/4ad66c32-65f6-494a-914e-b019a412db8d)
 
