@@ -71,9 +71,13 @@ NOTE:
 Open a terminal and run:
 
       docker build -t promotional_task7/myfirstpythonapp:0.0.1.RELEASE .
+  ![Screenshot (127)](https://github.com/user-attachments/assets/75f0bf3d-c0d1-45ad-ae1e-695279ac2236)
+
 * Run the Docker Container Locally
 
       docker container run -d -p 8000:8000 promotional_task7/myfirstpythonapp:0.0.1.RELEASE
+  ![Screenshot (128)](https://github.com/user-attachments/assets/2f8c7a50-41cd-4af4-8ec4-a51d20ad1b6c)
+
 * Test the Application
 Open a browser and go to http://localhost:8000 to see the message "Hello, Welcome to KodeCamp DevOps Bootcamp!".
 
@@ -92,6 +96,9 @@ N/b: you’ll be prompted to input your login credentials or it’ll authenticat
    * Push the image to Docker Hub
 
          docker push princessujay/myfirstpythonapp:0.0.1.RELEASE
+![Screenshot (130)](https://github.com/user-attachments/assets/d53e3b25-90b6-4981-b345-60701f9ccf56)
+![Screenshot (131)](https://github.com/user-attachments/assets/e53e5c63-cba4-43ad-9583-26e1db14b187)
+
 
 ### Step 3: Deploy the Application to a Kubernetes Cluster
 * Start Minikube
@@ -261,7 +268,12 @@ Now, access the application in your web browser at http://localhost:8080. You sh
       git commit -m "Initial commit"
       git push 
 ### Screenshots
-Include screenshots of your application running, Docker image, and Kubernetes deployment.
+Application running 
+![Screenshot (129)](https://github.com/user-attachments/assets/a9932488-e047-4af7-bb9f-8e0ea6cf204c)
+
+Docker image
+![Screenshot (126)](https://github.com/user-attachments/assets/27baa73e-148c-4fe9-8423-d8c3a27e4a7c)
+
 
 ### Docker Image URL
 https://hub.docker.com/r/princessujay/myfirstpythonapp
