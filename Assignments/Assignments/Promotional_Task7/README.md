@@ -271,7 +271,9 @@ https://hub.docker.com/r/princessujay/myfirstpythonapp
   
       ERROR: failed to solve: python:3.9-slim: failed to resolve source metadata for docker.io/library/python:3.9-slim: failed to copy: httpReadSeeker: failed open: failed to do request: Get "https://production.cloudflare.docker.com/registry-v2/docker/registry/v2/blobs/sha256/2/c21985b6cbb254ablc851bfcf403484205c5725a418376d1613f2b1255f/data?verify=1722815884-hkqJOclho3qVpGLOtV26BWsGwiQ%3D": net/http: TLS handshake timeout
 The error message indicated a timeout issue when Docker is trying to pull the python:3.9-slim image from Docker Hub. This happened due to network issues, connectivity problems, but it was not  temporary issues with Docker Hub.
-    * Resolution: Ensured that internet connection is stable and there are no interruptions.
+    
+   * Resolution: Ensured that internet connection is stable and there are no interruptions.
+    
 * issue 2
 ![image](https://github.com/user-attachments/assets/62b99190-bf54-4d48-a829-6aea2f9960cc)
     * Resolution: This part indicates that Minikube tried to find an existing Docker machine named "minikube" but couldn't find it. This is Not really an issue because Minikube will create a new machine if it doesn't find an existing one. I included it just incase you encounter it.
