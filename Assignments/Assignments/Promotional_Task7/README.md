@@ -278,8 +278,13 @@ The error message indicated a timeout issue when Docker is trying to pull the py
 * issue 2
 ![image](https://github.com/user-attachments/assets/62b99190-bf54-4d48-a829-6aea2f9960cc)
     * Resolution: This part indicates that Minikube tried to find an existing Docker machine named "minikube" but couldn't find it. This is Not really an issue because Minikube will create a new machine if it doesn't find an existing one. I included it just incase you encounter it.
- 
+
 * issue 3
+![Screenshot (122)](https://github.com/user-attachments/assets/94cae2b0-7df6-4bac-8905-a35e58c03e2f)
+![Screenshot (124)](https://github.com/user-attachments/assets/787be3fd-5294-4726-a2e7-4bd8885569bd)
+    * Resolution1: restart docker desktop
+
+* issue 4
 ![image](https://github.com/user-attachments/assets/8274ccd3-7c3e-4fbf-9ea6-c3a6c65d0493)
     * Resolution1: Enable virtualization in BIOS
 
