@@ -267,4 +267,26 @@ Include screenshots of your application running, Docker image, and Kubernetes de
 https://hub.docker.com/r/princessujay/myfirstpythonapp
 
 ### Issues and Resolutions
-Document any issues encountered during the process and how they were resolved.
+* issue 1
+![image](https://github.com/user-attachments/assets/8274ccd3-7c3e-4fbf-9ea6-c3a6c65d0493)
+    * Resolution1: Enable virtualization in BIOS
+
+         Steps to follow:
+          * Restart Your Computer: Restart your computer and enter the BIOS setup. This is usually done by pressing a key such as F2, F10, F12, Del, or Esc immediately after turning on your computer. The specific key can vary depending on your computer manufacturer.
+          * Enter BIOS Setup: Look for an option related to CPU, processor, or system configuration. The exact location and name of the setting may vary, but it’s often found under tabs like Advanced, Advanced BIOS Features, Processor Configuration, or System Configuration.
+          * Enable Virtualization: Find and enable the setting labeled Intel VT-x, Intel Virtualization Technology, Vanderpool, AMD-V, or SVM. Enable this option.
+          * Save and Exit BIOS: Save your changes and exit the BIOS setup. This is usually done by pressing F10, but the exact key may vary. Your computer will restart.
+          * Verify Virtualization is Enabled.
+             - Open Task Manager: Open Task Manager by pressing Ctrl + Shift + Esc or right-clicking the taskbar and selecting Task Manager.
+             - Check Virtualization Status: Go to the Performance tab and look for the Virtualization status. It should say Enabled.
+          * Retry Minikube: Once virtualization is enabled in your BIOS, try starting Minikube again:
+
+          minikube start
+    * Resolution2: Use Docker Driver
+
+      If you continue to have issues with VirtualBox, you can use the Docker driver instead, provided Docker is installed and running on your machine:
+
+To Start Minikube with Docker Driver run:
+          
+          minikube start --driver=docker
+N/B: Ensure that Docker Desktop is installed and running on your machine if you opt for the Docker driver. This approach avoids the need for enabling hardware virtualization in BIOS.
