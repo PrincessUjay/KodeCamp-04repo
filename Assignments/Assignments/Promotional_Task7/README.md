@@ -272,6 +272,7 @@ https://hub.docker.com/r/princessujay/myfirstpythonapp
     * Resolution1: Enable virtualization in BIOS
 
          Steps to follow:
+      
           * Restart Your Computer: Restart your computer and enter the BIOS setup. This is usually done by pressing a key such as F2, F10, F12, Del, or Esc immediately after turning on your computer. The specific key can vary depending on your computer manufacturer.
           * Enter BIOS Setup: Look for an option related to CPU, processor, or system configuration. The exact location and name of the setting may vary, but it’s often found under tabs like Advanced, Advanced BIOS Features, Processor Configuration, or System Configuration.
           * Enable Virtualization: Find and enable the setting labeled Intel VT-x, Intel Virtualization Technology, Vanderpool, AMD-V, or SVM. Enable this option.
