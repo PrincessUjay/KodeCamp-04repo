@@ -280,9 +280,7 @@ https://hub.docker.com/r/princessujay/myfirstpythonapp
           * Verify Virtualization is Enabled.
              - Open Task Manager: Open Task Manager by pressing Ctrl + Shift + Esc or right-clicking the taskbar and selecting Task Manager.
              - Check Virtualization Status: Go to the Performance tab and look for the Virtualization status. It should say Enabled.
-          * Retry Minikube: Once virtualization is enabled in your BIOS, try starting Minikube again:
-
-          minikube start
+          * Retry Minikube: Once virtualization is enabled in your BIOS, try starting Minikube again: run minikube start
     * Resolution2: Use Docker Driver
 
       If you continue to have issues with VirtualBox, you can use the Docker driver instead, provided Docker is installed and running on your machine:
